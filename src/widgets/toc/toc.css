@@ -1,0 +1,25 @@
+.hover-item {
+  line-height: 1.25;
+  --hover-opacity: 0;
+  background-color: rgb(var(--hover-bg) / var(--hover-opacity));
+  @apply rounded-sm mt-1 px-3 py-1;
+}
+.hover-item:hover {
+  --hover-opacity: 0.1;
+}
+.hover-item.choosen {
+  --hover-opacity: 0.1;
+}
+
+.collapse-list {
+  border-color: var(--link-hover);
+  @apply border-l-2;
+}
+
+.collapse-sign {
+  --hover-opacity: 0;
+  background-color: rgb(var(--hover-bg) / var(--hover-opacity));
+}
+.collapse-sign:hover {
+  --hover-opacity: 0.1;
+}

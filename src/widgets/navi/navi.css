@@ -1,0 +1,15 @@
+#navi {
+  /* background-color: #fff; */
+  background-color: var(--nav-background);
+  border-bottom-width: 1px;
+  @apply drop-shadow-lg sticky top-0  p-3 w-full flex items-center;
+}
+
+#navi .left {
+  flex: 1;
+  @apply flex;
+}
+
+h1 {
+  @apply m-0;
+}

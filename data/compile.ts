@@ -3,7 +3,7 @@ import path from 'path'
 
 const BASE_DIR = __dirname + '/doc'
 const META_PATH = __dirname + '/meta.json'
-const BACKUP_DIR = __dirname + '../doc.bak'
+const BACKUP_DIR = __dirname + '/doc.bak'
 const APP_DIR = __dirname + '/../src/app'
 
 interface DocMeta {
@@ -80,17 +80,19 @@ function backup_clean_app_page() {
 }
 
 function main() {
+  // backup_clean_app_page()
+
   ensureDirSync(BASE_DIR)
 
   const roots: DocMeta[] = []
 
   // first dir
   readdirSync(BASE_DIR, { withFileTypes: true }).forEach((f) => {
-    console.log(f.name)
     const child = deal(f)
-    console.log(child)
-    child && child.name !== 'index.md' && roots.push(child)
+    child && (f.name === 'index.md' ? roots.unshift(child) : roots.push(child))
   })
+
+  console.log(roots)
 
   writeJsonSync(META_PATH, roots)
 }

@@ -9,6 +9,8 @@ import { readJsonSync } from 'fs-extra'
 import MainContent from '@/widgets/main/main'
 import Footer from '@/widgets/footer/footer'
 import { WindowSizeProvider } from '@/components/window-size-provider'
+import { get_file_under_data } from '@/lib/local_util'
+import { getMeta } from './cache'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +24,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const res = readJsonSync(process.cwd() + '/data/meta.json')
+  const res = getMeta()
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>

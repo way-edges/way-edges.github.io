@@ -23,6 +23,7 @@ export interface TocContext {
 const GlobalTocContext: React.Context<TocContext> = createContext({ data: { root_items: [] } } as TocContext)
 
 export const TocCurrentPosProvider = ({ children, meta }: { children: React.ReactNode; meta: TocItem[] }) => {
+  console.log(meta)
   const [data, setSharedState] = useState<TocData>({
     root_items: meta,
   })

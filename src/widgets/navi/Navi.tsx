@@ -1,21 +1,21 @@
 'use client'
 
-import { useMediaQuery } from 'react-responsive'
 import './navi.css'
 import { Contact, MenuDrawer } from './common'
 import { ModeToggle } from '@/components/theme-provider'
-import { type TocItem } from '../toc/TocState'
-
-const MEDIA_MD = 768
+import { useWindowSize } from '@/components/window-size-provider'
+import { memo } from 'react'
 
 /// Header navigation
+const Navi = memo(() => {
+  const is_over_md = useWindowSize()
 
-export default function Navi({ toc }: { toc: TocItem[] }) {
-  const is_over_md = useMediaQuery({ minWidth: MEDIA_MD }, undefined, (b) => {
-    console.log('onchange', b)
-  })
-
-  const left = is_over_md ? <h1 className="font-bold text-lg">💻 Way-Edges</h1> : <MenuDrawer toc={toc}></MenuDrawer>
+  const left = (
+    <>
+      {is_over_md || <MenuDrawer></MenuDrawer>}
+      {<h1 className="font-bold text-lg">💻 Way-Edges</h1>}
+    </>
+  )
 
   const right = (
     <>
@@ -32,4 +32,7 @@ export default function Navi({ toc }: { toc: TocItem[] }) {
       </div>
     </nav>
   )
-}
+})
+Navi.displayName = 'Navi'
+
+export default Navi

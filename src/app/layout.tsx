@@ -1,8 +1,14 @@
+import './globals.css'
+import './root.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
-import './root.css'
+import { TocCurrentPosProvider } from '@/widgets/toc/TocState'
+import Navi from '@/widgets/navi/Navi'
+import { readJsonSync } from 'fs-extra'
+import MainContent from '@/widgets/main/main'
+import Footer from '@/widgets/footer/footer'
+import { WindowSizeProvider } from '@/components/window-size-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,12 +22,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const res = readJsonSync(process.cwd() + '/data/meta.json')
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" storageKey="vite-ui-theme">
-          {children}
-        </ThemeProvider>
+        <div id="root">
+          <ThemeProvider attribute="class" defaultTheme="system" storageKey="vite-ui-theme">
+            <TocCurrentPosProvider meta={res}>
+              <WindowSizeProvider>
+                <Navi />
+                <MainContent>{children}</MainContent>
+                <Footer />
+              </WindowSizeProvider>
+            </TocCurrentPosProvider>
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   )

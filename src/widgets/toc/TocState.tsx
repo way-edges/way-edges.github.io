@@ -4,6 +4,7 @@ import { createContext, useContext, useState } from 'react'
 
 export interface TocItem {
   title: string
+  name: string
   is_choosen: boolean
   children: TocItem[]
 }
@@ -19,22 +20,14 @@ export interface TocContext {
   set_data?: (data: TocData) => void
 }
 
-const DEFAULT_CONTENT: TocItem[] = [
-  {
-    title: 'Fail to load content',
-    is_choosen: false,
-    children: [],
-  },
-]
-
 const GlobalTocContext: React.Context<TocContext> = createContext({ data: { root_items: [] } } as TocContext)
 
-export const TocCurrentPosProvider = ({ children }: { children: React.ReactNode }) => {
+export const TocCurrentPosProvider = ({ children, meta }: { children: React.ReactNode; meta: TocItem[] }) => {
   const [data, setSharedState] = useState<TocData>({
-    root_items: DEFAULT_CONTENT,
+    root_items: meta,
   })
 
-  function setPos(item: TocItem) {
+  function set_pos(item: TocItem) {
     if (data.current_item) {
       data.current_item.is_choosen = false
     }
@@ -43,13 +36,16 @@ export const TocCurrentPosProvider = ({ children }: { children: React.ReactNode 
     setSharedState({ ...data })
   }
 
+  function set_data(data: TocData) {
+    setSharedState(data)
+    // if (!CONTENT_INITED) {
+    //   CONTENT_INITED = true
+    // }
+  }
+
   // const value = useMemo(() => ({ sharedState, setSharedState }), [sharedState])
 
-  return (
-    <GlobalTocContext.Provider value={{ data, set_pos: setPos, set_data: setSharedState }}>
-      {children}
-    </GlobalTocContext.Provider>
-  )
+  return <GlobalTocContext.Provider value={{ data, set_pos, set_data }}>{children}</GlobalTocContext.Provider>
 }
 
 export function useGlobalTocContext() {

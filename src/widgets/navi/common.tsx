@@ -4,11 +4,10 @@ import Toc from '../toc/Toc'
 import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 import { GitHubLogoIcon, HamburgerMenuIcon } from '@radix-ui/react-icons'
-import { type TocItem } from '../toc/TocState'
 
 /// left side drawer
 
-export const MenuDrawer = memo(({ toc }: { toc: TocItem[] }) => {
+export const MenuDrawer = memo(() => {
   const [is_mounted, mounted] = useState(false)
 
   useEffect(() => {
@@ -17,14 +16,14 @@ export const MenuDrawer = memo(({ toc }: { toc: TocItem[] }) => {
 
   const toc_contnet = (
     <div className="h-full w-[70vw] z-200">
-      <Toc toc={toc} />
+      <Toc />
     </div>
   )
 
   if (is_mounted) {
     return (
       <Drawer direction="left">
-        <DrawerTrigger data-state="open" asChild>
+        <DrawerTrigger className="mr-3" data-state="open" asChild>
           <Button variant="outline" size="icon">
             <HamburgerMenuIcon color="#666" width={20} height={20}></HamburgerMenuIcon>
           </Button>

@@ -8,35 +8,30 @@ export interface TocItem {
   children: TocItem[]
 }
 
-interface TocData {
+export interface TocData {
   root_items: TocItem[]
   current_item?: TocItem
 }
 
-interface TocContext {
+export interface TocContext {
   data: TocData
   set_pos?: (item: TocItem) => void
+  set_data?: (data: TocData) => void
 }
 
-const EXAMPLE_CONTENTS: TocItem[] = [
+const DEFAULT_CONTENT: TocItem[] = [
   {
-    title: 'Configuration',
+    title: 'Fail to load content',
     is_choosen: false,
-    children: [
-      {
-        title: 'lazy.nvim',
-        is_choosen: false,
-        children: [],
-      },
-    ],
+    children: [],
   },
 ]
 
-const TocCurrentPosContext: React.Context<TocContext> = createContext(null)
+const GlobalTocContext: React.Context<TocContext> = createContext({ data: { root_items: [] } } as TocContext)
 
-export const TocCurrentPosProvider = ({ children }) => {
+export const TocCurrentPosProvider = ({ children }: { children: React.ReactNode }) => {
   const [data, setSharedState] = useState<TocData>({
-    root_items: EXAMPLE_CONTENTS,
+    root_items: DEFAULT_CONTENT,
   })
 
   function setPos(item: TocItem) {
@@ -50,9 +45,13 @@ export const TocCurrentPosProvider = ({ children }) => {
 
   // const value = useMemo(() => ({ sharedState, setSharedState }), [sharedState])
 
-  return <TocCurrentPosContext.Provider value={{ data, set_pos: setPos }}>{children}</TocCurrentPosContext.Provider>
+  return (
+    <GlobalTocContext.Provider value={{ data, set_pos: setPos, set_data: setSharedState }}>
+      {children}
+    </GlobalTocContext.Provider>
+  )
 }
 
-export function useTocCurrentPos() {
-  return useContext(TocCurrentPosContext)
+export function useGlobalTocContext() {
+  return useContext(GlobalTocContext)
 }

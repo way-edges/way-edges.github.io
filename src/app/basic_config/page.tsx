@@ -5,7 +5,7 @@ import { readFileSync } from 'fs'
 import '@/app/md.css'
 
 export default async function Page() {
-  const path = get_file_under_data('/doc/4.widgets/0.button.md')
+  const path = get_file_under_data('/doc/3.basic_config.md')
   const content = readFileSync(path).toString()
   return (
     <main id="markdown-content">

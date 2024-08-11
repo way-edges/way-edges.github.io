@@ -1,7 +1,7 @@
 'use client'
 
 import './navi.css'
-import { Contact, MenuDrawer } from './common'
+import { Contact, MainTitle, MenuDrawer } from './common'
 import { ModeToggle } from '@/components/theme-provider'
 import { memo } from 'react'
 import { Media } from '@/components/media'
@@ -13,7 +13,7 @@ const Navi = memo(() => {
       <Media lessThan="md">
         <MenuDrawer></MenuDrawer>
       </Media>
-      <h1 className="font-bold text-lg">💻 Way-Edges</h1>
+      <MainTitle />
     </>
   )
 

@@ -5,18 +5,28 @@ import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/
 import { Button } from '@/components/ui/button'
 import { GitHubLogoIcon, HamburgerMenuIcon } from '@radix-ui/react-icons'
 
+export const MainTitle = memo(() => {
+  return <h1 className="font-bold text-lg">💻 Way-Edges</h1>
+})
+MainTitle.displayName = 'MainTitle'
+
 /// left side drawer
 
 export const MenuDrawer = memo(() => {
   return (
     <Drawer direction="left">
       <DrawerTrigger className="mr-3" data-state="open" asChild>
-        <Button variant="outline" size="icon">
+        <Button className="ts-inh" variant="outline" size="icon">
           <HamburgerMenuIcon color="#666" width={20} height={20}></HamburgerMenuIcon>
         </Button>
       </DrawerTrigger>
       <DrawerContent className="z-200">
-        <DrawerTitle></DrawerTitle>
+        <DrawerTitle className="p-3 pb-1 pt-4 flex">
+          <div className="flex-1">
+            <MainTitle />
+          </div>
+          <Contact />
+        </DrawerTitle>
         <div className="h-full w-[70vw] z-200">
           <Toc />
         </div>

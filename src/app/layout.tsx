@@ -1,13 +1,11 @@
 import './globals.css'
 import './root.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { TocCurrentPosProvider } from '@/widgets/toc/TocState'
 import { getMeta } from './cache'
 import RootHead from '@/components/root_head'
 import Root from '@/components/root'
-
-const inter = Inter({ subsets: ['latin'] })
+import { Body } from '@/components/body'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,13 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <RootHead />
-      <body className={inter.className}>
-        <div id="root">
-          <TocCurrentPosProvider meta={res}>
-            <Root>{children}</Root>
-          </TocCurrentPosProvider>
-        </div>
-      </body>
+      <Body res={res}>{children}</Body>
     </html>
   )
 }

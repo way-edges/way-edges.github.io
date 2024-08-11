@@ -2,7 +2,7 @@ import Toc from '@/widgets/toc/Toc'
 
 export default function SidePane() {
   return (
-    <aside className="border-r-2 w-[300px]">
+    <aside className="border-r-2 w-[300px] h-full">
       <Toc />
     </aside>
   )

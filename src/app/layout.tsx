@@ -5,11 +5,9 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { TocCurrentPosProvider } from '@/widgets/toc/TocState'
 import Navi from '@/widgets/navi/Navi'
-import { readJsonSync } from 'fs-extra'
 import MainContent from '@/widgets/main/main'
 import Footer from '@/widgets/footer/footer'
 import { WindowSizeProvider } from '@/components/window-size-provider'
-import { get_file_under_data } from '@/lib/local_util'
 import { getMeta } from './cache'
 
 const inter = Inter({ subsets: ['latin'] })

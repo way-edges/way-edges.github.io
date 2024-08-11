@@ -3,5 +3,5 @@ import { getMeta } from './cache'
 
 export default async function Home() {
   const toc = getMeta()
-  redirect()
+  redirect(toc[0].name_path)
 }

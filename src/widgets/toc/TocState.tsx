@@ -7,6 +7,8 @@ export interface TocItem {
   name: string
   is_choosen: boolean
   children: TocItem[]
+  path: string
+  name_path: string
 }
 
 export interface TocData {

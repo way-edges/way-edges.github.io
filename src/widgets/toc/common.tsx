@@ -1,5 +1,7 @@
 import { memo, useRef, useState } from 'react'
 import { type TocItem } from './TocState'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export interface CollapseProps {
   index: number
@@ -24,10 +26,19 @@ export const Collapse = memo(({ content, index, set_pos }: CollapseProps) => {
     list_style.height = `${list_ref.current!.scrollHeight}px`
   }
 
+  const router = useRouter()
+  function click() {
+    router.push(content.name)
+    set_pos!(content)
+  }
+
   return (
     <li key={index}>
       <div className={'flex hover-item ' + (content.is_choosen ? ' choosen' : '')}>
-        <a className="content-center flex-1 text-lg" onClick={() => set_pos!(content)}>
+        {/* <div className="content-center flex-1 text-lg"> */}
+        {/*   <Link href={content.name_path}>{content.title}</Link> */}
+        {/* </div> */}
+        <a className="content-center flex-1 text-lg" onClick={click}>
           {content.title}
         </a>
 

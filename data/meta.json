@@ -1,1 +1,1 @@
-[{"title":"index.md","name":"index.md","children":[]},{"title":"Test Doc 1","name":"test1-doc.md","children":[]}]
+[{"title":"Description","name":"description","children":[],"path":"/doc/0.description.md","name_path":"description"},{"title":"Installation","name":"installation","children":[],"path":"/doc/1.installation.md","name_path":"installation"},{"title":"Widgets","name":"widgets","children":[{"title":"Button","name":"button","children":[],"path":"/doc/2.widgets/0.button.md","name_path":"widgets/button"}],"path":"/doc/2.widgets/index.md","name_path":"widgets"}]

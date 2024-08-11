@@ -2,13 +2,10 @@ import './globals.css'
 import './root.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { ThemeProvider } from '@/components/theme-provider'
 import { TocCurrentPosProvider } from '@/widgets/toc/TocState'
-import Navi from '@/widgets/navi/Navi'
-import MainContent from '@/widgets/main/main'
-import Footer from '@/widgets/footer/footer'
-import { WindowSizeProvider } from '@/components/window-size-provider'
 import { getMeta } from './cache'
+import RootHead from '@/components/root_head'
+import Root from '@/components/root'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,17 +22,12 @@ export default function RootLayout({
   const res = getMeta()
   return (
     <html lang="en" suppressHydrationWarning>
+      <RootHead />
       <body className={inter.className}>
         <div id="root">
-          <ThemeProvider attribute="class" defaultTheme="system" storageKey="vite-ui-theme">
-            <TocCurrentPosProvider meta={res}>
-              <WindowSizeProvider>
-                <Navi />
-                <MainContent>{children}</MainContent>
-                <Footer />
-              </WindowSizeProvider>
-            </TocCurrentPosProvider>
-          </ThemeProvider>
+          <TocCurrentPosProvider meta={res}>
+            <Root>{children}</Root>
+          </TocCurrentPosProvider>
         </div>
       </body>
     </html>

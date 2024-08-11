@@ -3,23 +3,25 @@
 import './navi.css'
 import { Contact, MenuDrawer } from './common'
 import { ModeToggle } from '@/components/theme-provider'
-import { useWindowSize } from '@/components/window-size-provider'
 import { memo } from 'react'
+import { Media } from '@/components/media'
 
 /// Header navigation
 const Navi = memo(() => {
-  const is_over_md = useWindowSize()
-
   const left = (
     <>
-      {is_over_md || <MenuDrawer></MenuDrawer>}
-      {<h1 className="font-bold text-lg">💻 Way-Edges</h1>}
+      <Media lessThan="md">
+        <MenuDrawer></MenuDrawer>
+      </Media>
+      <h1 className="font-bold text-lg">💻 Way-Edges</h1>
     </>
   )
 
   const right = (
     <>
-      {is_over_md && <Contact></Contact>}
+      <Media greaterThanOrEqual="md">
+        <Contact></Contact>
+      </Media>
       <ModeToggle></ModeToggle>
     </>
   )

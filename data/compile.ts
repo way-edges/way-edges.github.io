@@ -169,7 +169,8 @@ function main() {
 
   writeJsonSync(META_PATH, roots)
 
-  // backup_clean_app_page()
+  backup_clean_app_page()
+
   function traverse_roots(roots: DocMeta[]) {
     roots.forEach((r) => {
       create_page(r)

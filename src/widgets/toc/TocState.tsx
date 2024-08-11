@@ -1,11 +1,11 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 export interface TocItem {
   title: string
   name: string
-  is_choosen: boolean
   children: TocItem[]
   path: string
   name_path: string
@@ -13,42 +13,55 @@ export interface TocItem {
 
 export interface TocData {
   root_items: TocItem[]
-  current_item?: TocItem
+  current_item_path?: string
+}
+
+export function useIsItemCurrent(item: TocItem) {
+  const ctx = useGlobalTocContext()
+  return ctx.data.current_item_path === item.name_path
 }
 
 export interface TocContext {
   data: TocData
-  set_pos?: (item: TocItem) => void
-  set_data?: (data: TocData) => void
 }
 
 const GlobalTocContext: React.Context<TocContext> = createContext({ data: { root_items: [] } } as TocContext)
 
 export const TocCurrentPosProvider = ({ children, meta }: { children: React.ReactNode; meta: TocItem[] }) => {
-  console.log(meta)
+  let [meta_route_path_map, metas] = useMemo(() => {
+    const map = new Map<string, TocItem>()
+    function traverse(items: TocItem[]) {
+      items.forEach((v) => {
+        map.set(v.name_path, v)
+        traverse(v.children)
+      })
+    }
+    traverse(meta)
+    return [map, meta]
+  }, [meta])
+
+  const path = usePathname().slice(1)
+
   const [data, setSharedState] = useState<TocData>({
-    root_items: meta,
+    root_items: metas,
   })
 
-  function set_pos(item: TocItem) {
-    if (data.current_item) {
-      data.current_item.is_choosen = false
+  const set_pos = (item: TocItem) => {
+    if (data.current_item_path === item.name_path) {
+      return
     }
-    item.is_choosen = true
-    data.current_item = item
+    data.current_item_path = item.name_path
     setSharedState({ ...data })
   }
 
-  function set_data(data: TocData) {
-    setSharedState(data)
-    // if (!CONTENT_INITED) {
-    //   CONTENT_INITED = true
-    // }
-  }
+  useEffect(() => {
+    const item = meta_route_path_map.get(path)
+    item && set_pos(item)
+  }, [path])
 
-  // const value = useMemo(() => ({ sharedState, setSharedState }), [sharedState])
+  const value = useMemo(() => ({ data }), [data])
 
-  return <GlobalTocContext.Provider value={{ data, set_pos, set_data }}>{children}</GlobalTocContext.Provider>
+  return <GlobalTocContext.Provider value={value}>{children}</GlobalTocContext.Provider>
 }
 
 export function useGlobalTocContext() {

@@ -1,17 +1,13 @@
 import { memo, useRef, useState } from 'react'
-import { type TocItem } from './TocState'
-import { useRouter } from 'next/navigation'
+import { useIsItemCurrent, type TocItem } from './TocState'
 import Link from 'next/link'
 
 export interface CollapseProps {
   index: number
   content: TocItem
-  set_pos: (content: TocItem) => void
 }
-export const Collapse = memo(({ content, index, set_pos }: CollapseProps) => {
-  const ls = content.children.map((content, i) => (
-    <Collapse index={i} content={content} set_pos={set_pos} key={i}></Collapse>
-  ))
+export const Collapse = ({ content, index }: CollapseProps) => {
+  const ls = content.children.map((content, i) => <Collapse index={i} content={content} key={i}></Collapse>)
 
   const [is_open, set_open] = useState(false)
   const list_ref = useRef<HTMLUListElement>(null)
@@ -26,21 +22,12 @@ export const Collapse = memo(({ content, index, set_pos }: CollapseProps) => {
     list_style.height = `${list_ref.current!.scrollHeight}px`
   }
 
-  const router = useRouter()
-  function click() {
-    router.push(content.name)
-    set_pos!(content)
-  }
-
   return (
     <li key={index}>
-      <div className={'flex hover-item ' + (content.is_choosen ? ' choosen' : '')}>
-        {/* <div className="content-center flex-1 text-lg"> */}
-        {/*   <Link href={content.name_path}>{content.title}</Link> */}
-        {/* </div> */}
-        <a className="content-center flex-1 text-lg" onClick={click}>
+      <div className={'flex hover-item ' + (useIsItemCurrent(content) ? ' choosen' : '')}>
+        <Link className="w-full content-center flex-1 text-lg" href={`/${content.name_path}`}>
           {content.title}
-        </a>
+        </Link>
 
         {ls.length > 0 ? (
           <div
@@ -56,5 +43,5 @@ export const Collapse = memo(({ content, index, set_pos }: CollapseProps) => {
       </ul>
     </li>
   )
-})
+}
 Collapse.displayName = 'Collapse'

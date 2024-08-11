@@ -24,3 +24,7 @@ body {
 .ts-inh {
   transition: inherit;
 }
+
+ul {
+  list-style-type: disc;
+}

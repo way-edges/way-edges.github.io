@@ -11,3 +11,11 @@
     max-width: calc(100% - var(--aside-width));
   }
 }
+
+.side-pane {
+  padding-top: var(--nav-height);
+  margin-top: calc(var(--nav-height) * -1);
+  top: 0;
+  position: sticky;
+  @apply h-full max-h-screen overflow-y-scroll;
+}

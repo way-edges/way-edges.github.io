@@ -25,7 +25,7 @@ export default function Footer() {
     set_op(1)
   }, [])
   return (
-    <footer className="h-[100px] bg-[var(--nav-background)] flex justify-center items-center">
+    <footer className="h-[100px] bg-[var(--nav-background)] flex justify-center items-center shadow-t-lg">
       <p
         className="text-center whitespace-break-spaces font-mono "
         style={{ opacity, transition: 'opacity 1s' }}

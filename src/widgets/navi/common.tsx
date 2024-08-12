@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { GitHubLogoIcon, HamburgerMenuIcon } from '@radix-ui/react-icons'
 
 export const MainTitle = memo(() => {
-  return <h1 className="font-bold text-lg">💻 Way-Edges</h1>
+  return <h1 className="font-bold text-lg truncate">💻 Way-Edges</h1>
 })
 MainTitle.displayName = 'MainTitle'
 

@@ -249,5 +249,5 @@ function MarkToc({ content, onClickTocItem }: { content: string; onClickTocItem:
     )
   })
 
-  return <ul className="border-l-2 p-1 w-[200px] min-w-[200px]">{toc_tree}</ul>
+  return <ul className="side-pane border-l-2 p-1 w-[200px] min-w-[200px]">{toc_tree}</ul>
 }

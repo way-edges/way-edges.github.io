@@ -1,0 +1,13 @@
+.main-page {
+  --aside-width: 300px;
+}
+
+#main-content {
+  width: 100%;
+}
+
+@media screen(lg) {
+  #main-content {
+    max-width: calc(100% - var(--aside-width));
+  }
+}

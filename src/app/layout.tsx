@@ -1,10 +1,8 @@
 import './globals.css'
 import './root.css'
 import type { Metadata } from 'next'
-import { TocCurrentPosProvider } from '@/widgets/toc/TocState'
 import { getMeta } from './cache'
 import RootHead from '@/components/root_head'
-import Root from '@/components/root'
 import { Body } from '@/components/body'
 
 export const metadata: Metadata = {

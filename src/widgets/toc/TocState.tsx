@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 export interface TocItem {
   title: string
@@ -16,9 +16,22 @@ export interface TocData {
   current_item_path?: string
 }
 
-export function useIsItemCurrent(item: TocItem) {
-  const ctx = useGlobalTocContext()
-  return ctx.data.current_item_path === item.name_path
+export enum OpenState {
+  FALSE,
+  THIS,
+  OPEN,
+}
+
+export function useTocOpenState(item: TocItem): OpenState {
+  const p = useGlobalTocContext().data.current_item_path
+  if (p) {
+    if (p === item.name_path) {
+      return OpenState.THIS
+    } else if (p.startsWith(item.name_path)) {
+      return OpenState.OPEN
+    }
+  }
+  return OpenState.FALSE
 }
 
 export interface TocContext {
@@ -54,9 +67,18 @@ export const TocCurrentPosProvider = ({ children, meta }: { children: React.Reac
     setSharedState({ ...data })
   }
 
-  useEffect(() => {
+  const inited = useRef(false)
+  if (!inited.current) {
     const item = meta_route_path_map.get(path)
     item && set_pos(item)
+    inited.current = true
+  }
+
+  useEffect(() => {
+    if (inited.current) {
+      const item = meta_route_path_map.get(path)
+      item && set_pos(item)
+    }
   }, [path])
 
   const value = useMemo(() => ({ data }), [data])

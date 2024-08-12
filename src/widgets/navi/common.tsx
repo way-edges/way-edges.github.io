@@ -20,14 +20,14 @@ export const MenuDrawer = memo(() => {
           <HamburgerMenuIcon color="#666" width={20} height={20}></HamburgerMenuIcon>
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="z-200">
+      <DrawerContent className="z-50">
         <DrawerTitle className="p-3 pb-1 pt-4 flex">
           <div className="flex-1">
             <MainTitle />
           </div>
           <Contact />
         </DrawerTitle>
-        <div className="h-full w-[70vw] z-200">
+        <div className="h-full w-[70vw]">
           <Toc />
         </div>
       </DrawerContent>

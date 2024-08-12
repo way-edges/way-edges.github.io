@@ -2,7 +2,8 @@
   /* background-color: #fff; */
   background-color: var(--nav-background);
   border-bottom-width: 1px;
-  @apply drop-shadow-lg sticky top-0  p-3 w-full flex items-center;
+  height: var(--nav-height);
+  @apply drop-shadow-lg sticky top-0 z-40 p-3 w-full flex items-center;
 }
 
 #navi .left {

@@ -8,8 +8,6 @@ import { Collapse } from './common'
 const Toc = memo(() => {
   const { data } = useGlobalTocContext()
 
-  console.log('render toc', data)
-
   const contents = data.root_items.map((c, i_content) => {
     return <Collapse key={i_content} content={c} index={i_content} />
   })

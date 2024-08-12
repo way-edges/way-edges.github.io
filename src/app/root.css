@@ -18,6 +18,7 @@ body {
 }
 
 #root {
+  --nav-height: 3.75rem;
   @apply flex flex-col min-h-full;
 }
 

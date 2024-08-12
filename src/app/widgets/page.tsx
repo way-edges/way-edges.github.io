@@ -8,8 +8,6 @@ export default async function Page() {
   const path = get_file_under_data('/doc/4.widgets/index.md')
   const content = readFileSync(path).toString()
   return (
-    <main id="markdown-content">
       <MarkdownContent content={content} />
-    </main>
   )
 }

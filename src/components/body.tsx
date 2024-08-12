@@ -13,7 +13,7 @@ export const Body = ({ children, res }: { children: React.ReactNode; res: TocIte
     unset_transition('inherit')
   }, [])
   return (
-    <body className={inter.className} style={{ transition }}>
+    <body style={{ transition }}>
       <div id="root">
         <TocCurrentPosProvider meta={res}>
           <Root>{children}</Root>

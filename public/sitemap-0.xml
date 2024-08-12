@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://example.com</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/cmd</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets/ring</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets/button</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/installation</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets/slide</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets/backlight</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets/speaker</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets/box</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets/text</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/widgets/microphone</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/basic_config</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://example.com/description</loc><lastmod>2024-08-12T14:47:11.346Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>

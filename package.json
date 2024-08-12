@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "prebuild": "next-sitemap"
   },
   "dependencies": {
     "@artsy/fresnel": "^7.1.4",

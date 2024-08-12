@@ -15,6 +15,7 @@ interface MarkdownInfo {
 }
 
 import { Skeleton } from '@/components/ui/skeleton'
+import { Media } from '@/components/media'
 const MarkdownContent = memo(({ content }: MarkdownInfo) => {
   const { theme } = useTheme()
 
@@ -30,108 +31,112 @@ const MarkdownContent = memo(({ content }: MarkdownInfo) => {
 
   if (mounted) {
     return (
-      <div className="flex w-full">
-        <MarkdownPreview
-          source={content}
-          // @ts-ignore
-          // ignore theme variable type (it's sould only be dark or light)
-          wrapperElement={{ 'data-color-mode': theme }}
-          style={{ minHeight: '100%', padding: 30, background: 'none' }}
-          onScroll={(v) => {
-            console.log(v)
-          }}
-          components={{
-            h1: ({ node, ...props }) => {
-              return (
-                <h1
-                  ref={(el) => {
-                    headersRef.current.push(el!)
-                  }}
-                  {...props}
-                />
-              )
-            },
-            h2: ({ node, ...props }) => {
-              return (
-                <h2
-                  ref={(el) => {
-                    headersRef.current.push(el!)
-                  }}
-                  {...props}
-                />
-              )
-            },
-            h3: ({ node, ...props }) => {
-              return (
-                <h3
-                  ref={(el) => {
-                    headersRef.current.push(el!)
-                  }}
-                  {...props}
-                />
-              )
-            },
-            h4: ({ node, ...props }) => {
-              return (
-                <h4
-                  ref={(el) => {
-                    headersRef.current.push(el!)
-                  }}
-                  {...props}
-                />
-              )
-            },
-            h5: ({ node, ...props }) => {
-              return (
-                <h5
-                  ref={(el) => {
-                    headersRef.current.push(el!)
-                  }}
-                  {...props}
-                />
-              )
-            },
-            h6: ({ node, ...props }) => {
-              return (
-                <h6
-                  ref={(el) => {
-                    headersRef.current.push(el!)
-                  }}
-                  {...props}
-                />
-              )
-            },
+      <div className="flex w-full flex-wrap ">
+        <div className="w-full lg:max-w-[75%]" style={{ flex: '1 0 auto' }}>
+          <MarkdownPreview
+            source={content}
+            // @ts-ignore
+            // ignore theme variable type (it's sould only be dark or light)
+            wrapperElement={{ 'data-color-mode': theme }}
+            style={{ minHeight: '100%', padding: 30, background: 'none' }}
+            onScroll={(v) => {
+              console.log(v)
+            }}
+            components={{
+              h1: ({ node, ...props }) => {
+                return (
+                  <h1
+                    ref={(el) => {
+                      headersRef.current.push(el!)
+                    }}
+                    {...props}
+                  />
+                )
+              },
+              h2: ({ node, ...props }) => {
+                return (
+                  <h2
+                    ref={(el) => {
+                      headersRef.current.push(el!)
+                    }}
+                    {...props}
+                  />
+                )
+              },
+              h3: ({ node, ...props }) => {
+                return (
+                  <h3
+                    ref={(el) => {
+                      headersRef.current.push(el!)
+                    }}
+                    {...props}
+                  />
+                )
+              },
+              h4: ({ node, ...props }) => {
+                return (
+                  <h4
+                    ref={(el) => {
+                      headersRef.current.push(el!)
+                    }}
+                    {...props}
+                  />
+                )
+              },
+              h5: ({ node, ...props }) => {
+                return (
+                  <h5
+                    ref={(el) => {
+                      headersRef.current.push(el!)
+                    }}
+                    {...props}
+                  />
+                )
+              },
+              h6: ({ node, ...props }) => {
+                return (
+                  <h6
+                    ref={(el) => {
+                      headersRef.current.push(el!)
+                    }}
+                    {...props}
+                  />
+                )
+              },
 
-            code: ({ children = [], className, ...props }) => {
-              if (typeof children === 'string' && /^\$\$(.*)\$\$/.test(children)) {
-                const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
-                  throwOnError: false,
-                })
-                return <code dangerouslySetInnerHTML={{ __html: html }} style={{ background: 'transparent' }} />
-              }
-              const code = props.node && props.node.children ? getCodeString(props.node.children) : children
-              if (
-                typeof code === 'string' &&
-                typeof className === 'string' &&
-                /^language-katex/.test(className.toLocaleLowerCase())
-              ) {
-                const html = katex.renderToString(code, {
-                  throwOnError: false,
-                })
-                return <code style={{ fontSize: '150%' }} dangerouslySetInnerHTML={{ __html: html }} />
-              }
-              return <code className={String(className)}>{children}</code>
-            },
-          }}
-        />
+              code: ({ children = [], className, ...props }) => {
+                if (typeof children === 'string' && /^\$\$(.*)\$\$/.test(children)) {
+                  const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
+                    throwOnError: false,
+                  })
+                  return <code dangerouslySetInnerHTML={{ __html: html }} style={{ background: 'transparent' }} />
+                }
+                const code = props.node && props.node.children ? getCodeString(props.node.children) : children
+                if (
+                  typeof code === 'string' &&
+                  typeof className === 'string' &&
+                  /^language-katex/.test(className.toLocaleLowerCase())
+                ) {
+                  const html = katex.renderToString(code, {
+                    throwOnError: false,
+                  })
+                  return <code style={{ fontSize: '150%' }} dangerouslySetInnerHTML={{ __html: html }} />
+                }
+                return <code className={String(className)}>{children}</code>
+              },
+            }}
+          />
+        </div>
 
-        <MarkToc
-          content={content}
-          onClickTocItem={(index) => {
-            console.log(headersRef.current.length)
-            headersRef.current[index].scrollIntoView({ behavior: 'smooth', block: 'center' })
-          }}
-        />
+        <Media greaterThanOrEqual="md" className="w-[25%]" style={{ flex: '0 0 auto', paddingRight: 10 }}>
+          <MarkToc
+            content={content}
+            onClickTocItem={(index) => {
+              console.log(headersRef.current.length)
+              headersRef.current[index].scrollIntoView({ behavior: 'smooth', block: 'center' })
+            }}
+          />
+        </Media>
       </div>
     )
   } else {
@@ -249,5 +254,5 @@ function MarkToc({ content, onClickTocItem }: { content: string; onClickTocItem:
     )
   })
 
-  return <ul className="side-pane border-l-2 p-1 w-[200px] min-w-[200px]">{toc_tree}</ul>
+  return <ul className="side-pane border-l-2 p-1 ">{toc_tree}</ul>
 }

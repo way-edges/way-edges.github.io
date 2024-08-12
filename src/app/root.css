@@ -36,7 +36,6 @@ pre,
 table,
 code {
   overflow: auto;
-  white-space: pre-wrap !important;
 }
 
 table {

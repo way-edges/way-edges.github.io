@@ -39,9 +39,6 @@ const MarkdownContent = memo(({ content }: MarkdownInfo) => {
             // ignore theme variable type (it's sould only be dark or light)
             wrapperElement={{ 'data-color-mode': theme }}
             style={{ minHeight: '100%', padding: 30, background: 'none' }}
-            onScroll={(v) => {
-              console.log(v)
-            }}
             components={{
               h1: ({ node, ...props }) => {
                 return (
@@ -132,7 +129,6 @@ const MarkdownContent = memo(({ content }: MarkdownInfo) => {
           <MarkToc
             content={content}
             onClickTocItem={(index) => {
-              console.log(headersRef.current.length)
               headersRef.current[index].scrollIntoView({ behavior: 'smooth', block: 'center' })
             }}
           />
@@ -218,7 +214,6 @@ function MarkToc({ content, onClickTocItem }: { content: string; onClickTocItem:
   // @ts-ignore
   Array.from(content.matchAll(reg)).forEach(({ groups: { flag, content } }, index) => {
     const level = flag.length
-    console.log(level)
     while (current_node.level >= level) {
       current_node = current_node.parent!
     }

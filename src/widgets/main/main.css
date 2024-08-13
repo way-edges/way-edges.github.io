@@ -17,5 +17,8 @@
   margin-top: calc(var(--nav-height) * -1);
   top: 0;
   position: sticky;
-  @apply h-full max-h-screen overflow-y-scroll;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+
+  @apply h-full max-h-screen overflow-auto;
 }

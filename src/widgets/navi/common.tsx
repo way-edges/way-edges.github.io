@@ -27,7 +27,7 @@ export const MenuDrawer = memo(() => {
           </div>
           <Contact />
         </DrawerTitle>
-        <div className="h-full w-[70vw]">
+        <div className="h-full w-[70vw] overflow-auto">
           <Toc />
         </div>
       </DrawerContent>

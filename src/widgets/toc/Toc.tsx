@@ -12,7 +12,7 @@ const Toc = memo(() => {
     return <Collapse key={i_content} content={c} index={i_content} />
   })
 
-  return <div className="w-full p-2">{contents}</div>
+  return <div className="w-full p-2 list-none">{contents}</div>
 })
 Toc.displayName = 'Toc'
 

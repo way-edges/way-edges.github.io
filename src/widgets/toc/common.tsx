@@ -37,11 +37,17 @@ export const Collapse = ({ content, index }: CollapseProps) => {
         list: {
           ...list_style.list,
           height: `${list_ref.current!.scrollHeight}px`,
+          // height: null,
         },
         switch: {
           rotate: '90deg',
         },
       })
+      let on_transition_end = () => {
+        list_ref.current!.style.height = 'auto'
+        list_ref.current!.removeEventListener('transitionend', on_transition_end)
+      }
+      list_ref.current!.addEventListener('transitionend', on_transition_end)
     } else {
       set_list_style({
         list: {

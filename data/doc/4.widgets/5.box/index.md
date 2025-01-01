@@ -1,29 +1,29 @@
-# Box
+# WrapBox
 
-A Grid Box act as a container for other specific widgets.  
-Current available elements:
-
-- Ring
-- Text
+A Grid Box act as a container for other widgets.
 
 _Example:_
 
 ```json
 {
-  "name": "stats",
-  "edge": "left",
+  "name": "time",
+  "edge": "bottom",
+  "monitor": "HDMI-A-1",
   "layer": "overlay",
-  "frame_rate": 144,
   "widget": {
-    "type": "box",
+    "type": "wrap-box",
     "widgets": [
       {
         "index": [-1, -1],
         "widget": {
-          "frame_rate": 144,
-          "type": "ring",
-          "prefix": "RAM ",
-          "preset": "ram"
+          "type": "text",
+          "fg_color": "#FFFFFF",
+          "font_size": 30,
+          "font_family": "JetBrainsMono Nerd Font",
+          "preset": {
+            "type": "time",
+            "format": "%m-%d\n%H:%M"
+          }
         }
       }
     ]
@@ -34,30 +34,8 @@ _Example:_
 ## `type*`
 
 ```plaintext
-const `box`
+const `wrap-box`
 ```
-
-## `frame_rate`
-
-Frame rate per second, won't hurt if over screen refresh rate.
-
-_Type: `int`_  
-_Default: `60`_
-
-## `transition_duration`
-
-Time cost of showing the widget from the edge.  
-Millisecond.
-
-_Type: `int`_  
-_Default: `100`_
-
-## `extra_trigger_size`
-
-Extra mouse event input region of the widget, if `0` then the widget won't be shown by mouse hover.
-
-_Type: `int | string`_  
-_Default: `5`_
 
 ## `gap`
 
@@ -66,24 +44,25 @@ Gap between widgets in the grid.
 _Type: `int`_  
 _Default: `10`_
 
-## `widgets`
+## `align`
 
-Array of supported widgets and it's position in grid.
+Align of the items inside grid
 
-_Type: `array`_  
-_Default: `[]`_
-
-### `index*`
-
-`[x, y]` position of the widget in grid, `-1` means to append widget to the end of the grid.
-
-_Type: `[int, int]`_
-
-### `widget*`
-
-Normal widget item, currently only support `Ring` and `Text`.
-
-_Type: `object`_
+```rust
+#[serde(rename_all = "snake_case")]
+pub enum Align {
+    #[default]
+    TopLeft,
+    TopCenter,
+    TopRight,
+    CenterLeft,
+    CenterCenter,
+    CenterRight,
+    BottomLeft,
+    BottomCenter,
+    BottomRight,
+}
+```
 
 ## `outlook`
 
@@ -102,10 +81,10 @@ const `window`
 
 #### `margins`
 
-Tuple of 4 integers, left, top, right, bottom.
+left, top, right, bottom.
 
-_Type: `[int, int, int, int]`_  
-_Default: `[5,5,5,5]`_
+_Type: `object`_  
+_Default: `{}`_
 
 #### `color`
 
@@ -126,3 +105,20 @@ _Default: `5`_
 
 _Type: `int`_  
 _Default: `15`_
+
+## `widgets`
+
+Array of supported widgets and it's position in grid.
+
+_Type: `array`_  
+_Default: `[]`_
+
+### `index*`
+
+`[x, y]` position of the widget in grid, `-1` means to append widget to the end of the grid.
+
+_Type: `[int, int]`_
+
+### `widget*`
+
+_Type: `object`_

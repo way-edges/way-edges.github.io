@@ -2,21 +2,18 @@
 
 ```json
 {
-  "widgets": {
-    "type": "array",
-    "items": { "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-
-        ...
-
-        // this thing
-        "widget": {
-          "$ref": "#/definitions/AllWidgets"
-        }
-      }
+  "edge": "top",
+  "monitor": "HDMI-A-1",
+  "layer": "overlay",
+  "position": "left",
+  "widget": {
+    "type": "slider",
+    "thickness": 40,
+    "border_width": 6,
+    "length": "12.5%",
+    "redraw_only_on_internal_update": true,
+    "preset": {
+      "type": "speaker"
     }
   }
 }
@@ -28,14 +25,11 @@
 
 - `btn` - Button
 - `slide` - Slide
-- `speaker` - Speaker
-- `microphone` - Microphone
-- `backlight` - Backlight
+  - `speaker` - Speaker
+  - `microphone` - Microphone
+  - `backlight` - Backlight
 - `box` - Box
-  - `ring` - Ring (_Provide presets_)
-  - `text` - Text (_Provide presets_)
+  - `ring`
+  - `text`
+  - `tray`
 - `hyprland-workspace` - Hyprland workspace
-
-## In Plan
-
-- Tray

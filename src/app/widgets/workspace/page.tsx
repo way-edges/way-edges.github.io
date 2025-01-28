@@ -5,7 +5,7 @@ import { readFileSync } from 'fs'
 import '@/app/md.css'
 
 export default async function Page() {
-  const path = get_file_under_data('/doc/4.widgets/3.hypr-workspace.md')
+  const path = get_file_under_data('/doc/4.widgets/3.workspace.md')
   const content = readFileSync(path).toString()
   return (
       <MarkdownContent content={content} />

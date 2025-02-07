@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   applicationName: 'Way-Edges',
   authors: { url: 'https://github.com/ogios', name: 'OGIOS' },
   generator: 'Next.js',
-  keywords: ['wayland', 'unix', 'gtk', 'way-edges', 'custom widgets', 'doc'],
+  keywords: ['wayland', 'unix', 'smithay', 'way-edges', 'custom widgets', 'doc'],
   creator: 'OGIOS',
   category: 'Wayland Client',
 }

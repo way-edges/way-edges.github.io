@@ -23,13 +23,13 @@
 
 `<type> - <widget>`
 
-- `btn` - Button
-- `slide` - Slide
-  - `speaker` - Speaker
-  - `microphone` - Microphone
-  - `backlight` - Backlight
-- `box` - Box
+- `btn`
+- `slide`
+  - `speaker`
+  - `microphone`
+  - `backlight`
+- `box`
   - `ring`
   - `text`
   - `tray`
-- `hyprland-workspace` - Hyprland workspace
+- `workspace`
